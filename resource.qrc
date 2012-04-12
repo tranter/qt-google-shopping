@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/exit.png</file>
+        <file>images/searchfind.png</file>
+        <file>images/details.png</file>
+        <file>images/next.png</file>
+        <file>images/prev.png</file>
+        <file>images/refresh.png</file>
+        <file>images/histogram.png</file>
+    </qresource>
+</RCC>
