@@ -10,7 +10,7 @@ TEMPLATE = app
 
 linux* {
 LIBS += ../qjson/build/lib/libqjson.so ../qwt-6.0/lib/libqwt.so
-INCLUDEPATH += ../qjson/include ../qwt-6.0.1/src
+INCLUDEPATH += ../qjson/include ../qwt-6.0/src
 }
 
 win* {
