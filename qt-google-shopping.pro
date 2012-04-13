@@ -9,12 +9,12 @@ TARGET = qtshopping
 TEMPLATE = app
 
 linux* {
-LIBS += ../qjson/build/lib/libqjson.so ../qwt-6.0.1/lib/libqwt.so
+LIBS += ../qjson/build/lib/libqjson.so ../qwt-6.0/lib/libqwt.so
 INCLUDEPATH += ../qjson/include ../qwt-6.0.1/src
 }
 
 win* {
-LIBS += ../qjson/lib/qjson0.dll
+LIBS += ../qjson/build/lib/qjson0.dll
 LIBS += -L ../qwt-6.0/lib -lqwt
 
 INCLUDEPATH += ../qjson/include
