@@ -35,6 +35,15 @@ void ShoppingDataManager::startSearch(const QString& str,const QString& country)
 
     m_saveQuery = str;
     m_saveCountry = country;
+
+    if(m_key == "YOUR_APP_KEY_HERE")
+    {
+        QMessageBox::warning(0,"Warning",
+                             "To work with application you need to register your own application in <b>Google</b>.\n"
+                             "Learn more from <a href='http://code.google.com/p/qt-google-shopping/wiki/HowToRegisterYourApplicationInGoogle'>here</a>");
+        return;
+    }
+
     if (m_saveCountry.isEmpty()) {
         m_saveCountry = "US";
     } else {
