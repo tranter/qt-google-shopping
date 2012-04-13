@@ -27,6 +27,7 @@ public:
     void setMaxResults(int max) {m_maxResults = max;}
     bool isFacetsEnabled() {return m_facetsEnabled;}
     void setFacetsEnabled(bool flag) {m_facetsEnabled = flag;}
+    bool isKey();
 
     QVariantList& getProducts() {return m_products;}
     QVariantList& getDetails() {return m_details;}

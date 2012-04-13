@@ -39,25 +39,25 @@ void MainWindow::onLoadList()
 void MainWindow::onShowDetails()
 {
     qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
-    m_pForm->showDetails();
+    if(m_pForm->getManager()->isKey()) m_pForm->showDetails();
 }
 
 void MainWindow::onRefresh()
 {
     qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
-    m_pForm->refresh();
+    if(m_pForm->getManager()->isKey()) m_pForm->refresh();
 }
 
 void MainWindow::onNext()
 {
     qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
-    m_pForm->next();
+    if(m_pForm->getManager()->isKey()) m_pForm->next();
 }
 
 void MainWindow::onBack()
 {
     qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
-    m_pForm->back();
+    if(m_pForm->getManager()->isKey()) m_pForm->back();
 }
 void MainWindow::onHistogram()
 {
