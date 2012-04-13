@@ -14,9 +14,11 @@ INCLUDEPATH += ../qjson/include ../qwt-6.0.1/src
 }
 
 win* {
-include("c:\Qwt-6.0.1\features\qwt.prf")
-LIBS += ../qjson/build/lib/qjson0.lib
+LIBS += ../qjson/lib/qjson0.dll
+LIBS += -L ../qwt-6.0/lib -lqwt
+
 INCLUDEPATH += ../qjson/include
+INCLUDEPATH += ../qwt-6.0/src/
 }
 
 macx* {
