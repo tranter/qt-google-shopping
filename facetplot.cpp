@@ -19,7 +19,7 @@
 class HistogramScaleDraw: public QwtScaleDraw
 {
 public:
-    HistogramScaleDraw(const QVariantList& list) : m_list(list) {};
+    HistogramScaleDraw(const QVariantList& list) : m_list(list) {}
     virtual QwtText label(double v) const
     {
         qDebug() << "label called" << v;
@@ -78,11 +78,6 @@ public:
 //        }
     }
     void setPlot(QwtPlot* p) {m_pPlot = p;}
-    /*! \brief Very simple approach... not good..
-     */
-    int getBrandIndex() {
-        return 0;
-    }
 
 private:
     const QVariantList& m_list;
