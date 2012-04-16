@@ -214,19 +214,8 @@ void FacetPlot::showItem(QwtPlotItem *item, bool on)
 {
     qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__ << "Item title=" << item->title().text();
     item->setVisible(on);
-    if (item->title().text() == "brand") {
-        if (on) {
-            m_vBrand = true;
-        } else {
-            m_vBrand = false;
-        }
-    } else {
-        if (on) {
-            m_vBrand = false;
-        } else {
-            m_vBrand = true;
-        }
-    }
-//    ui->qwtPlot->legend()->
+
+    m_vBrand = item->title().text() == "brand" ? on : !on;
+
     ui->qwtPlot->replot(); // creating the legend items
 }
