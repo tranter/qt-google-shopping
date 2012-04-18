@@ -1,4 +1,3 @@
-#include <QDebug>
 #include <QDateTime>
 
 #include "mainwindow.h"
@@ -32,41 +31,34 @@ MainWindow::~MainWindow()
 
 void MainWindow::onLoadList()
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
     m_pForm->startSearch();
 }
 
 void MainWindow::onShowDetails()
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
     if(m_pForm->getManager()->isKey()) m_pForm->showDetails();
 }
 
 void MainWindow::onRefresh()
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
     if(m_pForm->getManager()->isKey()) m_pForm->refresh();
 }
 
 void MainWindow::onNext()
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
     if(m_pForm->getManager()->isKey()) m_pForm->next();
 }
 
 void MainWindow::onBack()
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
     if(m_pForm->getManager()->isKey()) m_pForm->back();
 }
 void MainWindow::onHistogram()
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
     m_pForm->showHistogram();
 }
 void MainWindow::onProductsListReady()
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__;
     if (m_pForm->isFacetAvailable()) {
         ui->actionHistogram->setEnabled(true);
     } else {

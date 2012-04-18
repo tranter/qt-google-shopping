@@ -7,8 +7,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-//    w.checkApi();
-//    w.startLoginDefault();
-
     return a.exec();
 }

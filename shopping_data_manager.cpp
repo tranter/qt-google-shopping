@@ -1,4 +1,3 @@
-#include <QDebug>
 #include <QApplication>
 #include <QDateTime>
 #include <QMessageBox>
@@ -9,7 +8,7 @@
 ShoppingDataManager::ShoppingDataManager()
 {
     m_pNetworkAccessManager = new QNetworkAccessManager(this);
-    m_key = "YOUR_APP_KEY_HERE";
+    m_key = "YOUR_SIMPLE_API_ACCESS_KEY_HERE";
     m_startIndex = 1;
     m_maxResults = 25;
     m_facetsEnabled = true;
@@ -29,9 +28,7 @@ ShoppingDataManager::~ShoppingDataManager()
  */
 void ShoppingDataManager::startSearch(const QString& str,const QString& country)
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__ << "search pattern=" << str << ", country=" << country;
     QString query;
-    QString strCountry;
 
     m_saveQuery = str;
     m_saveCountry = country;
@@ -69,8 +66,6 @@ void ShoppingDataManager::startSearch(const QString& str,const QString& country)
 
 void ShoppingDataManager::searchProducts(const QString auth_token,const QString& str,const QString& country)
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__ << "auth_token=" << auth_token << ", str=" << str << ", country=" << country;
-
     QString locCountry = country;
     if (locCountry.isEmpty()) {
         locCountry = "US";
@@ -81,12 +76,9 @@ void ShoppingDataManager::searchProducts(const QString auth_token,const QString&
 
 void ShoppingDataManager::showDetails(const int pos)
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__ << pos;
     if ((pos < 0)||(pos >= m_products.size())) {
         return;
     }
-
-//    QMessageBox(QMessageBox::Information,"Info","No implemented yet.",QMessageBox::Ok,QApplication::activeWindow()).exec();
 
     QString s = QString("https://www.googleapis.com/shopping/search/v1/public/products/%1/gid/%2?key=%3&country=%4&alt=json")
             .arg(m_products[pos].toMap()["product"].toMap()["author"].toMap()["accountId"].toString())
@@ -98,18 +90,13 @@ void ShoppingDataManager::showDetails(const int pos)
 
 void ShoppingDataManager::replyFinished(QNetworkReply *reply)
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__ << reply->url();
     QString json = reply->readAll();
-//    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__ << "Reply is: " << json;
-    qDebug() << "****************### Reply = " << json.mid(0,25000);
-//    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__ << "Check point 1";
     if (json.length() == 0) {
         QMessageBox(QMessageBox::Information,"Info","No data present.",QMessageBox::Ok,QApplication::activeWindow()).exec();
         return;
     }
 
     QJson::Parser parser;
-
     bool ok;
 
     // json is a QString containing the data to convert
@@ -125,20 +112,16 @@ void ShoppingDataManager::replyFinished(QNetworkReply *reply)
     }
 
     if (result.toMap()["kind"] == "shopping#products") {
-//        qDebug() << "Reply = " << json;
         m_products = result.toMap()["items"].toList();
         m_details.clear();
         m_facets.clear();
         if (result.toMap().contains("facets")) {
             m_facets = result.toMap()["facets"].toList();
         }
-//        qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__ << "Amount of products is " << m_products.size();
         emit sigProductsListReady();
         return;
     } else if (result.toMap()["kind"] == "shopping#product") {
-//        qDebug() << "Reply = " << json;
         m_details = result.toMap()["items"].toList();
-//        qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__ << "Amount of details is " << m_details.size();
         emit sigDetailsListReady();
         return;
     }
@@ -241,7 +224,7 @@ bool ShoppingDataManager::isKey()
 {
     bool key = false;
 
-    if(m_key == "YOUR_APP_KEY_HERE")
+    if(m_key == "YOUR_SIMPLE_API_ACCESS_KEY_HERE")
     {
         QMessageBox::warning(0,"Warning",
                              "To work with application you need to register your own application in <b>Google</b>.\n"

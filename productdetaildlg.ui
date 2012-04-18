@@ -278,7 +278,7 @@
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QDialogButtonBox" name="buttonBox_OK">
+    <widget class="QDialogButtonBox" name="buttonBox_Close">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -299,26 +299,10 @@
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox_OK</sender>
-   <signal>accepted()</signal>
+   <sender>buttonBox_Close</sender>
+   <signal>clicked(QAbstractButton*)</signal>
    <receiver>ProductDetailDlg</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>295</x>
-     <y>467</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>295</x>
-     <y>243</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox_OK</sender>
-   <signal>rejected()</signal>
-   <receiver>ProductDetailDlg</receiver>
-   <slot>reject()</slot>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>295</x>

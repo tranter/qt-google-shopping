@@ -2,6 +2,7 @@
 #define PRODUCTDETAILDLG_H
 
 #include <QDialog>
+#include <QAbstractButton>
 
 namespace Ui {
     class ProductDetailDlg;
@@ -16,7 +17,6 @@ public:
     ~ProductDetailDlg();
 
     Ui::ProductDetailDlg* data() {return ui;}
-
 
 private:
     Ui::ProductDetailDlg *ui;

@@ -13,12 +13,24 @@ LIBS += ../qjson/build/lib/libqjson.so ../qwt-6.0/lib/libqwt.so
 INCLUDEPATH += ../qjson/include ../qwt-6.0/src
 }
 
-win* {
+win32-g++ {
 LIBS += ../qjson/build/lib/qjson0.dll
 LIBS += -L ../qwt-6.0/lib -lqwt
 
 INCLUDEPATH += ../qjson/include
 INCLUDEPATH += ../qwt-6.0/src/
+}
+
+win32-msvc* {
+    CONFIG(debug, debug|release) {
+        LIBS += ../qwt-6.0/lib/qwtd.lib
+    } else {
+        LIBS += ../qwt-6.0/lib/qwt.lib
+    }
+    LIBS += ../qjson/build/lib/qjson0.lib
+
+    INCLUDEPATH += ../qjson/include
+    INCLUDEPATH += ../qwt-6.0/src/
 }
 
 macx* {

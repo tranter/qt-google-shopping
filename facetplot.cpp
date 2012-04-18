@@ -1,4 +1,3 @@
-#include <QDebug>
 #include <QDateTime>
 
 #include <qpen.h>
@@ -22,10 +21,7 @@ public:
     HistogramScaleDraw(const QVariantList& list) : m_list(list) {}
     virtual QwtText label(double v) const
     {
-        qDebug() << "label called" << v;
         bool bBrand =((FacetPlot *)m_pPlot)->getVBrand();
-
-        qDebug() << "bBrand" << bBrand << m_list.count();
 
         int index = bBrand ? 0 : 1;
         if(fabs(floor(v + 0.5) - v) > 0.00001)
@@ -42,40 +38,6 @@ public:
         {
             return QwtText("");
         }
-
-//        if (bBrand) {
-//            int index = 0;
-////            qDebug() << "bBrand" << bBrand << m_list[index].toMap()["buckets"].toList().count();
-////            if (v == 1.0) {
-////                return m_list[index].toMap()["buckets"].toList()[0].toMap()["value"].toString();
-////            } else if (v == 2.0) {
-////                return m_list[index].toMap()["buckets"].toList()[1].toMap()["value"].toString();
-////            } else if (v == 3.0) {
-////                return m_list[index].toMap()["buckets"].toList()[2].toMap()["value"].toString();
-////            } else if (v == 4.0) {
-////                return m_list[index].toMap()["buckets"].toList()[3].toMap()["value"].toString();
-////            } else if (v == 5.0) {
-////                return m_list[index].toMap()["buckets"].toList()[4].toMap()["value"].toString();
-////            } else {
-////                return QwtText("");
-////            }
-//        } else {
-//            int index = 1;
-//            qDebug() << "bBrand" << bBrand << m_list[index].toMap()["buckets"].toList().count();
-//            if (v == 1.0) {
-//                return m_list[index].toMap()["buckets"].toList()[0].toMap()["value"].toString();
-//            } else if (v == 2.0) {
-//                return m_list[index].toMap()["buckets"].toList()[1].toMap()["value"].toString();
-//            } else if (v == 3.0) {
-//                return m_list[index].toMap()["buckets"].toList()[2].toMap()["value"].toString();
-//            } else if (v == 4.0) {
-//                return m_list[index].toMap()["buckets"].toList()[3].toMap()["value"].toString();
-//            } else if (v == 5.0) {
-//                return m_list[index].toMap()["buckets"].toList()[4].toMap()["value"].toString();
-//            } else {
-//                return QwtText("");
-//            }
-//        }
     }
     void setPlot(QwtPlot* p) {m_pPlot = p;}
 
@@ -212,10 +174,8 @@ void FacetPlot::populate(const QVariantList& facets)
 
 void FacetPlot::showItem(QwtPlotItem *item, bool on)
 {
-    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") <<  __FUNCTION__ << "Item title=" << item->title().text();
     item->setVisible(on);
 
     m_vBrand = item->title().text() == "brand" ? on : !on;
-
     ui->qwtPlot->replot(); // creating the legend items
 }
