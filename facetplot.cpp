@@ -3,7 +3,7 @@
 #include <qpen.h>
 #include <qwt_plot_layout.h>
 #include <qwt_legend.h>
-#include <qwt_legend_item.h>
+//#include <qwt_legend_item.h>
 #include <qwt_plot_grid.h>
 #include <qwt_plot_histogram.h>
 #include <qwt_column_symbol.h>
@@ -128,7 +128,7 @@ FacetPlot::FacetPlot(QWidget *parent) :
     ui->qwtPlot->setAxisTitle(QwtPlot::xBottom, "Facet");
 
     QwtLegend *legend = new QwtLegend;
-    legend->setItemMode(QwtLegend::CheckableItem);
+    //legend->setItemMode(QwtLegend::CheckableItem);
     ui->qwtPlot->insertLegend(legend, QwtPlot::RightLegend);
 
     connect(ui->qwtPlot, SIGNAL(legendChecked(QwtPlotItem *, bool)),
@@ -147,7 +147,7 @@ void FacetPlot::populate(const QVariantList& facets)
     grid->enableY(true);
     grid->enableXMin(false);
     grid->enableYMin(false);
-    grid->setMajPen(QPen(Qt::black, 0, Qt::DotLine));
+    grid->setMajorPen(QPen(Qt::black, 0, Qt::DotLine));
     grid->attach(ui->qwtPlot);
 
     HistogramScaleDraw* pScale = new HistogramScaleDraw(facets);

@@ -4,13 +4,14 @@
 #
 #-------------------------------------------------
 QT       += core gui webkit network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
 
 TARGET = qtshopping
 TEMPLATE = app
 
 linux* {
-LIBS += ../qjson/build/lib/libqjson.so ../qwt-6.0/lib/libqwt.so
-INCLUDEPATH += ../qjson/include ../qwt-6.0/src
+LIBS += ../qjson/build/lib/libqjson.so ../qwt-6.1.2/lib/libqwt.so
+INCLUDEPATH += ../qjson/include ../qwt-6.1.2/src
 }
 
 win32-g++ {
